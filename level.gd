@@ -21,6 +21,8 @@ func _ready() -> void:
 	is_victory = false
 	rest_try_time = max_try_time
 	player_m.connect("reduce_rest_time_signal",self, "reduce_rest_time")
+	player_m.connect("change_sight_signal", self, "change_sight")
+	
 	self.connect("try_times_updated", $GUI/HBox/MC2/VC/PowerPanel, "_on_try_times_updated")
 	emit_signal("try_times_updated", rest_try_time)
 	
@@ -80,3 +82,8 @@ func _judge_game_over(delta:float) -> void:
 				
 func is_end() -> bool:
 	return is_game_over or is_victory
+
+func change_sight(sight_index) ->void:
+	player_m.change_exhibit_mode(sight_index)
+	for npc in npc_list:
+		npc.get_node("Orbit").change_exhibit_mode(sight_index)

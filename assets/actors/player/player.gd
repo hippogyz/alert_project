@@ -12,11 +12,13 @@ var _velocity : Vector2 = Vector2.ZERO
 onready var affect_area = get_node("AffectArea")
 
 var has_rest_time : bool
+var exhibit_mode
 
 func _ready() -> void:
 	connect("try_take_alert_signal", affect_area, "awake_affect_area")
 	affect_area.connect("awake_affect_area_signal",self,"reduce_rest_time")
 	has_rest_time = true
+	exhibit_mode = 0
 
 
 func _physics_process(delta: float) -> void:
@@ -47,3 +49,6 @@ func forbid_take_alert() -> void:
 
 func permit_take_alert() -> void:
 	has_rest_time = true
+
+func change_exhibit_mode(mode) -> void:
+	exhibit_mode = mode

@@ -19,4 +19,5 @@ rotation = -0.0352579
 [node name="Orbit" type="Node2D" parent="."]
 z_index = -10
 script = ExtResource( 2 )
+player_color = Color( 0, 1, 1, 1 )
 npc_path_nodepath = NodePath("..")
