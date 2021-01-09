@@ -1,0 +1,214 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/tiles/block.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/actors/npc/npc_large.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/actors/player/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/tiles/background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://level.gd" type="Script" id=6]
+[ext_resource path="res://assets/actors/npc/npc.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/actors/npc/npc_small.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 678.777, 233.284, 0, 0, 0, 0, 545.927, 274.238, 0, 0, 0, 0, 516.959, 376.123, 0, 0, 0, 0, 544.928, 473.013, 0, 0, 0, 0, 643.816, 524.954, 0, 0, 0, 0, 769.674, 496.986, 0, 0, 0, 0, 810.628, 386.111, 0, 0, 0, 0, 788.652, 278.233, 0, 0, 0, 0, 678.777, 233.284 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -721.384, 695.177, 0, 0, 0, 0, 159.721, 698.537 )
+}
+
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 336.94, 98.3879, 0, 0, 0, 0, 336.311, 721.393 )
+}
+
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -466.039, 354.998, 0, 0, 0, 0, -813.778, 354.998, 0, 0, 0, 0, -806.218, 822.009 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 170.922, 534.242, 0, 0, 0, 0, 170.922, -219.191, 0, 0, 0, 0, 173.441, 377.172 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 259.956, 551.041, 0, 0, 0, 0, 254.076, 78.9906, 0, 0, 0, 0, 631.213, 76.4708 )
+}
+
+[node name="StageKO" type="Node2D"]
+script = ExtResource( 6 )
+game_over_waiting_time = 5.0
+
+[node name="player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 256, 568 )
+
+[node name="GUI" parent="." instance=ExtResource( 5 )]
+margin_left = 0.629211
+margin_right = 0.629211
+
+[node name="TileMap" parent="." instance=ExtResource( 4 )]
+tile_set = ExtResource( 1 )
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 32, 0, 0, 33, 0, 0, 34, 0, 0, 65536, 0, 0, 65541, 0, 0, 65561, 0, 0, 65570, 0, 0, 131072, 0, 0, 131077, 0, 0, 131097, 0, 0, 131106, 0, 0, 262134, 0, 0, 196608, 0, 0, 196613, 0, 0, 196633, 0, 0, 196642, 0, 0, 262144, 0, 0, 262149, 0, 0, 262169, 0, 0, 262178, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327705, 0, 0, 327714, 0, 0, 393216, 0, 0, 393241, 0, 0, 393242, 0, 0, 393243, 0, 0, 393244, 0, 0, 393245, 0, 0, 393246, 0, 0, 393247, 0, 0, 393248, 0, 0, 393249, 0, 0, 393250, 0, 0, 458752, 0, 0, 458786, 0, 0, 524288, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524311, 0, 0, 524322, 0, 0, 589824, 0, 0, 589836, 0, 0, 589847, 0, 0, 589858, 0, 0, 655360, 0, 0, 655372, 0, 0, 655383, 0, 0, 655394, 0, 0, 720896, 0, 0, 720908, 0, 0, 720919, 0, 0, 720930, 0, 0, 786432, 0, 0, 786444, 0, 0, 786455, 0, 0, 786466, 0, 0, 851968, 0, 0, 851980, 0, 0, 851991, 0, 0, 852002, 0, 0, 917504, 0, 0, 917516, 0, 0, 917527, 0, 0, 917538, 0, 0, 983040, 0, 0, 983052, 0, 0, 983063, 0, 0, 983074, 0, 0, 1048576, 0, 0, 1048588, 0, 0, 1048599, 0, 0, 1048610, 0, 0, 1114112, 0, 0, 1114113, 0, 0, 1114114, 0, 0, 1114115, 0, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1114120, 0, 0, 1114121, 0, 0, 1114124, 0, 0, 1114125, 0, 0, 1114126, 0, 0, 1114127, 0, 0, 1114128, 0, 0, 1114129, 0, 0, 1114130, 0, 0, 1114131, 0, 0, 1114132, 0, 0, 1114133, 0, 0, 1114134, 0, 0, 1114135, 0, 0, 1114137, 0, 0, 1114138, 0, 0, 1114139, 0, 0, 1114140, 0, 0, 1114141, 0, 0, 1114142, 0, 0, 1114143, 0, 0, 1114144, 0, 0, 1114145, 0, 0, 1114146, 0, 0, 1179648, 0, 0, 1179657, 0, 0, 1179673, 0, 0, 1179682, 0, 0, 1245184, 0, 0, 1245193, 0, 0, 1245209, 0, 0, 1245218, 0, 0, 1310720, 0, 0, 1310729, 0, 0, 1310745, 0, 0, 1310754, 0, 0, 1376256, 0, 0, 1376265, 0, 0, 1376281, 0, 0, 1376290, 0, 0, 1441792, 0, 0, 1441801, 0, 0, 1441817, 0, 0, 1441826, 0, 0, 1507328, 0, 0, 1507337, 0, 0, 1507353, 0, 0, 1507362, 0, 0, 1572864, 0, 0, 1572873, 0, 0, 1572889, 0, 0, 1572898, 0, 0, 1638400, 0, 0, 1638409, 0, 0, 1638425, 0, 0, 1638434, 0, 0, 1703936, 0, 0, 1703937, 0, 0, 1703938, 0, 0, 1703939, 0, 0, 1703940, 0, 0, 1703941, 0, 0, 1703942, 0, 0, 1703943, 0, 0, 1703944, 0, 0, 1703945, 0, 0, 1703946, 0, 0, 1703947, 0, 0, 1703948, 0, 0, 1703949, 0, 0, 1703950, 0, 0, 1703951, 0, 0, 1703952, 0, 0, 1703953, 0, 0, 1703954, 0, 0, 1703955, 0, 0, 1703956, 0, 0, 1703957, 0, 0, 1703958, 0, 0, 1703959, 0, 0, 1703960, 0, 0, 1703961, 0, 0, 1703962, 0, 0, 1703963, 0, 0, 1703964, 0, 0, 1703965, 0, 0, 1703966, 0, 0, 1703967, 0, 0, 1703968, 0, 0, 1703969, 0, 0, 1703970, 0, 0 )
+
+[node name="NPCList" type="Node2D" parent="."]
+
+[node name="L1" parent="NPCList" instance=ExtResource( 2 )]
+position = Vector2( 56.9357, 131.851 )
+curve = SubResource( 1 )
+
+[node name="Ball" parent="NPCList/L1" index="0"]
+position = Vector2( 678.777, 233.284 )
+rotation = 2.84258
+loop = true
+
+[node name="Orbit" parent="NPCList/L1" index="1"]
+npc_path_nodepath = NodePath("../../L1")
+
+[node name="N1" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( -62.9289, 59.9323 )
+curve = null
+
+[node name="N2" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( -116.868, 120.674 )
+curve = null
+
+[node name="N3" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( -22.974, 963.911 )
+curve = null
+
+[node name="N5" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( -96.8905, 963.911 )
+curve = null
+
+[node name="N4" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( -81.9075, 891.992 )
+curve = null
+
+[node name="N6" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( 1077.78, 955.92 )
+curve = null
+
+[node name="N7" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( 1091.77, 863.025 )
+curve = null
+
+[node name="N8" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( 1018.85, 898.984 )
+curve = null
+
+[node name="N9" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( 1032.83, 152.828 )
+curve = null
+
+[node name="N12" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( 1099.76, 99.8874 )
+curve = null
+
+[node name="N10" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( 1046.82, 59.9324 )
+curve = null
+
+[node name="N11" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( 973.899, 95.8918 )
+curve = null
+
+[node name="N13" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( 973.899, 95.8918 )
+curve = SubResource( 4 )
+
+[node name="N15" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( 973.899, 95.8918 )
+curve = SubResource( 6 )
+
+[node name="N14" parent="NPCList" instance=ExtResource( 7 )]
+position = Vector2( 973.899, 95.8918 )
+curve = SubResource( 5 )
+
+[node name="S1" parent="NPCList" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( -136.228, 714.05 )
+curve = null
+
+[node name="S2" parent="NPCList" instance=ExtResource( 8 )]
+position = Vector2( -93.1147, 373.579 )
+curve = SubResource( 2 )
+
+[node name="S3" parent="NPCList" instance=ExtResource( 8 )]
+position = Vector2( -93.1147, 373.579 )
+curve = SubResource( 2 )
+
+[node name="Ball" parent="NPCList/S3" index="0"]
+position = Vector2( 170.922, 140.194 )
+rotation = -1.5708
+offset = 395.567
+
+[node name="Orbit" parent="NPCList/S3" index="1"]
+npc_path_nodepath = NodePath("../../../../StageKO/NPCList/S1")
+
+[node name="S4" parent="NPCList" instance=ExtResource( 8 )]
+position = Vector2( -93.1147, 373.579 )
+curve = SubResource( 2 )
+
+[node name="Ball" parent="NPCList/S4" index="0"]
+position = Vector2( 171.189, -155.933 )
+rotation = 1.56658
+offset = 817.83
+
+[node name="Orbit" parent="NPCList/S4" index="1"]
+npc_path_nodepath = NodePath("../../../../StageKO/NPCList/S1")
+
+[node name="S5" parent="NPCList" instance=ExtResource( 8 )]
+position = Vector2( -93.1147, 373.579 )
+curve = SubResource( 3 )
+
+[node name="Ball" parent="NPCList/S5" index="0"]
+position = Vector2( 601.389, 76.67 )
+rotation = -0.0066816
+offset = 817.83
+
+[node name="Orbit" parent="NPCList/S5" index="1"]
+npc_path_nodepath = NodePath("../../../../StageKO/NPCList/S1")
+
+[node name="S6" parent="NPCList" instance=ExtResource( 8 )]
+position = Vector2( -93.1147, 373.579 )
+curve = SubResource( 3 )
+
+[node name="Ball" parent="NPCList/S6" index="0"]
+position = Vector2( 601.389, 76.67 )
+rotation = -0.0066816
+offset = 817.83
+velocity = 400.0
+
+[node name="Orbit" parent="NPCList/S6" index="1"]
+npc_path_nodepath = NodePath("../../../../StageKO/NPCList/S1")
+
+[node name="S7" parent="NPCList" instance=ExtResource( 8 )]
+position = Vector2( -93.1147, 373.579 )
+curve = SubResource( 3 )
+
+[node name="Ball" parent="NPCList/S7" index="0"]
+position = Vector2( 601.389, 76.67 )
+rotation = -0.0066816
+offset = 817.83
+velocity = 500.0
+
+[node name="Orbit" parent="NPCList/S7" index="1"]
+npc_path_nodepath = NodePath("../../../../StageKO/NPCList/S1")
+
+[editable path="TileMap"]
+
+[editable path="NPCList/L1"]
+
+[editable path="NPCList/S3"]
+
+[editable path="NPCList/S4"]
+
+[editable path="NPCList/S5"]
+
+[editable path="NPCList/S6"]
+
+[editable path="NPCList/S7"]
