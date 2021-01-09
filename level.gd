@@ -15,6 +15,7 @@ var rest_try_time : int
 onready var player_m = get_node("player")
 onready var npc_list = get_node("NPCList").get_children()
 const stage_clear = preload("res://gui/StageClear.tscn")
+const game_over = preload("res://gui/GameOver.tscn")
 
 func _ready() -> void:
 	is_game_over = false
@@ -72,12 +73,19 @@ func _judge_victory() -> void:
 		
 func change_to_next_stage():
 	get_tree().change_scene_to(next_stage)
+	
+func restart_self():
+	get_tree().reload_current_scene()
 
 func _judge_game_over(delta:float) -> void:
 		if is_game_over && game_over_waiting_time > 0 && !is_victory:
 			game_over_waiting_time -= delta
 			if game_over_waiting_time <= 0:
 				print("%s: game over" % get_tree().get_current_scene().get_name())
+				emit_signal("victory_signal")
+				var popup = game_over.instance()
+				add_child(popup)
+				popup.connect("count_down_finish", self, "restart_self")
 				emit_signal("game_over_signal")
 				
 func is_end() -> bool:
