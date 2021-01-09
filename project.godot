@@ -24,6 +24,10 @@ config/name="Tell Evenryone"
 run/main_scene="res://stages/Stage1.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+MusicPlayer="*res://sound/MusicPlayer.tscn"
+
 [display]
 
 window/size/width=1920

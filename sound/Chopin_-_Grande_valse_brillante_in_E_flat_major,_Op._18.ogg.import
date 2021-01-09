@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Chopin_-_Grande_valse_brillante_in_E_flat_major,_Op._18.ogg-652315ad3a5f17c6a4cf504dad226b7e.oggstr"
+
+[deps]
+
+source_file="res://sound/Chopin_-_Grande_valse_brillante_in_E_flat_major,_Op._18.ogg"
+dest_files=[ "res://.import/Chopin_-_Grande_valse_brillante_in_E_flat_major,_Op._18.ogg-652315ad3a5f17c6a4cf504dad226b7e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
