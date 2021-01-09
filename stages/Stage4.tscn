@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/tiles/block.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/actors/npc/npc.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/actors/player/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/tiles/background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://level.gd" type="Script" id=6]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 392, 52, 0, 0, 0, 0, 1354, 941 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 522, 44, 0, 0, 0, 0, 1361, 827 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 621, 45, 0, 0, 0, 0, 1359, 670 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 731, 46, 0, 0, 0, 0, 1361, 633 )
+}
+
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 857, 43, 0, 0, 0, 0, 1356, 405 )
+}
+
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 975, 37, 0, 0, 0, 0, 1359, 292 )
+}
+
+[node name="Stage4" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 256, 568 )
+
+[node name="GUI" parent="." instance=ExtResource( 5 )]
+margin_left = 0.629211
+margin_right = 0.629211
+
+[node name="StageName" parent="GUI/HBox/MC2/VC/StagePanel/MarginContainer/VBoxContainer/CenterContainer" index="0"]
+margin_left = 82.0
+margin_right = 362.0
+text = "STAGE IV"
+
+[node name="StageDesc" parent="GUI/HBox/MC2/VC/StagePanel/MarginContainer/VBoxContainer/CenterContainer2" index="0"]
+margin_left = 102.0
+margin_right = 342.0
+text = "WHAT IS Strange?"
+uppercase = true
+
+[node name="TileMap" parent="." instance=ExtResource( 4 )]
+tile_set = ExtResource( 1 )
+
+[node name="NPCList" type="Node2D" parent="."]
+
+[node name="a1" parent="NPCList" instance=ExtResource( 2 )]
+curve = SubResource( 1 )
+
+[node name="a2" parent="NPCList" instance=ExtResource( 2 )]
+curve = SubResource( 2 )
+
+[node name="a7" parent="NPCList" instance=ExtResource( 2 )]
+position = Vector2( 759, 310 )
+curve = null
+
+[node name="a8" parent="NPCList" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 829, 359 )
+curve = null
+
+[node name="a9" parent="NPCList" instance=ExtResource( 2 )]
+position = Vector2( 696, 251 )
+curve = null
+
+[node name="a10" parent="NPCList" instance=ExtResource( 2 )]
+position = Vector2( 633, 198 )
+curve = null
+
+[node name="a3" parent="NPCList" instance=ExtResource( 2 )]
+visible = false
+curve = SubResource( 3 )
+
+[node name="a4" parent="NPCList" instance=ExtResource( 2 )]
+curve = SubResource( 4 )
+
+[node name="a5" parent="NPCList" instance=ExtResource( 2 )]
+curve = SubResource( 5 )
+
+[node name="a6" parent="NPCList" instance=ExtResource( 2 )]
+curve = SubResource( 6 )
+
+[node name="TileMap2" type="TileMap" parent="."]
+z_index = -33
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 40, 40 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 65544, 0, 0, 131081, 0, 0, 196618, 0, 0, 262155, 0, 0, 327692, 0, 0, 393229, 0, 0, 458766, 0, 0, 524303, 0, 0, 589840, 0, 0, 655377, 0, 0, 720914, 0, 0, 786451, 0, 0, 851988, 0, 0, 917525, 0, 0, 983062, 0, 0, 1048599, 0, 0, 1114136, 0, 0, 1179673, 0, 0, 1245210, 0, 0, 1310747, 0, 0, 1376284, 0, 0, 1441821, 0, 0, 1507358, 0, 0, 1572895, 0, 0, 1638432, 0, 0 )
+
+[editable path="GUI"]
