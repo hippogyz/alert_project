@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/down_1.wav-bd6c792c57422b1a319c1c8406a194d5.sample"
+
+[deps]
+
+source_file="res://sound/down_1.wav"
+dest_files=[ "res://.import/down_1.wav-bd6c792c57422b1a319c1c8406a194d5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

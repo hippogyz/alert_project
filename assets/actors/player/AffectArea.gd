@@ -33,3 +33,7 @@ func _stop_affect_area() -> void:
 	is_awake = false
 	area_sprite.visible = false
 	area_collision.disabled = true
+
+func change_and_play_audio(audio_path : String) -> void:
+	$AudioStreamPlayer2D.stream = load(audio_path)
+	$AudioStreamPlayer2D.play()
