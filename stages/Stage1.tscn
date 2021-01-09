@@ -54,7 +54,9 @@ _data = {
 
 [node name="Stage1" type="Node2D"]
 script = ExtResource( 5 )
+game_over_waiting_time = 5.0
 next_stage = ExtResource( 6 )
+max_try_time = 999
 
 [node name="player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 496.478, 340.424 )

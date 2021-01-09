@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level.gd" type="Script" id=2]
 [ext_resource path="res://assets/actors/player/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://stages/Stage3.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/actors/npc/npc.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/tiles/background.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 resource_local_to_scene = true
@@ -26,6 +27,7 @@ _data = {
 
 [node name="Stage2" type="Node2D"]
 script = ExtResource( 2 )
+game_over_waiting_time = 5.0
 next_stage = ExtResource( 4 )
 max_try_time = 2
 
@@ -56,5 +58,7 @@ text = "STAGE II"
 margin_left = 95.0
 margin_right = 350.0
 text = "FIND THE TIMEING!"
+
+[node name="Background" parent="." instance=ExtResource( 6 )]
 
 [editable path="GUI"]

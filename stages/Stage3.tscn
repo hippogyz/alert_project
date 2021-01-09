@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/tiles/block.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/actors/npc/npc.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/actors/player/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/tiles/background.tscn" type="PackedScene" id=4]
 [ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://level.gd" type="Script" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -12,6 +13,7 @@ _data = {
 }
 
 [node name="Stage3" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 256, 568 )
@@ -46,9 +48,20 @@ tile_data = PoolIntArray( 65545, 0, 0, 131081, 0, 0, 196617, 0, 0, 262153, 0, 0,
 position = Vector2( -8, -4 )
 curve = SubResource( 1 )
 
+[node name="Ball" parent="NPCList/ranger" index="0"]
+position = Vector2( 860, 54 )
+rotation = 2.8973
+loop = true
+
 [node name="ranger2" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( -8, -4 )
 curve = SubResource( 1 )
+
+[node name="Ball" parent="NPCList/ranger2" index="0"]
+position = Vector2( 455.514, 433.875 )
+rotation = 1.78286
+offset = 652.559
+loop = true
 
 [node name="b1" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 1057, 48 )
@@ -63,3 +76,7 @@ position = Vector2( 1048, 121 )
 curve = null
 
 [editable path="GUI"]
+
+[editable path="NPCList/ranger"]
+
+[editable path="NPCList/ranger2"]
