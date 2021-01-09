@@ -65,3 +65,6 @@ func _judge_game_over(delta:float) -> void:
 			if game_over_waiting_time <= 0:
 				print("%s: game over" % get_tree().get_current_scene().get_name())
 				emit_signal("game_over_signal")
+				
+func is_end() -> bool:
+	return is_game_over or is_victory

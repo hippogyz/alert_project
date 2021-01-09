@@ -51,7 +51,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 893.842, 584.587, 0, 0, 0, 0, 909.557, 419.211, 0, 0, 0, 0, 1000.1, 577.104, 0, 0, 0, 0, 1023.3, 414.721 )
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Stage1" type="Node2D"]
 script = ExtResource( 5 )
 
 [node name="player" parent="." instance=ExtResource( 3 )]

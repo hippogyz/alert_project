@@ -1,24 +1,57 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/tiles/block.tres" type="TileSet" id=2]
+[ext_resource path="res://level.gd" type="Script" id=2]
 [ext_resource path="res://assets/actors/player/player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/tiles/background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/actors/npc/npc.tscn" type="PackedScene" id=5]
+[ext_resource path="res://fonts/GUI-fonts.tres" type="DynamicFont" id=6]
+[ext_resource path="res://stages/PowerPanel.gd" type="Script" id=7]
 
 [sub_resource type="Curve2D" id=1]
+resource_local_to_scene = true
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 860, 54, 0, 0, 0, 0, 519, 139, 0, 0, 0, 0, 443, 492, 0, 0, 0, 0, 543, 908, 0, 0, 0, 0, 888, 1006, 0, 0, 0, 0, 1278, 937, 0, 0, 0, 0, 1346, 513, 0, 0, 0, 0, 1281, 118, 0, 0, 0, 0, 860, 54 )
+"points": PoolVector2Array( 0, 0, 0, 0, 250, -100, 0, 0, 0, 0, -150, 200 )
 }
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="Curve2D" id=2]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 200, 400, 0, 0, 0, 0, 200, -100 )
+}
+
+[sub_resource type="Curve2D" id=3]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 300, 100, 0, 0, 0, 0, 700, 400 )
+}
+
+[sub_resource type="DynamicFont" id=4]
+size = 200
+outline_size = 10
+font_data = ExtResource( 4 )
+
+[node name="Stage2" type="Node2D"]
+script = ExtResource( 2 )
+max_try_time = 2
 
 [node name="player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 256, 568 )
+position = Vector2( 454.952, 484.649 )
+
+[node name="NPCList" type="Node2D" parent="."]
+
+[node name="a1" parent="NPCList" instance=ExtResource( 5 )]
+position = Vector2( 950, 200 )
+curve = SubResource( 1 )
+
+[node name="a2" parent="NPCList" instance=ExtResource( 5 )]
+position = Vector2( 550, 550 )
+curve = SubResource( 2 )
+
+[node name="a3" parent="NPCList" instance=ExtResource( 5 )]
+curve = SubResource( 3 )
 
 [node name="GUI" parent="." instance=ExtResource( 1 )]
-margin_left = 0.629211
-margin_right = 0.629211
 
 [node name="StageName" parent="GUI/HBox/MC2/VC/StagePanel/MarginContainer/VBoxContainer/CenterContainer" index="0"]
 margin_left = 82.0
@@ -26,40 +59,41 @@ margin_right = 362.0
 text = "STAGE II"
 
 [node name="StageDesc" parent="GUI/HBox/MC2/VC/StagePanel/MarginContainer/VBoxContainer/CenterContainer2" index="0"]
-margin_left = 95.0
-margin_right = 350.0
-text = "MAY A RANGER HELP？"
+margin_left = 102.0
+margin_right = 342.0
+text = "FIND THE TIMING!"
 
-[node name="TileMap" parent="." instance=ExtResource( 4 )]
-tile_set = ExtResource( 2 )
+[node name="PowerPanel" parent="GUI/HBox/MC2/VC" index="1"]
+script = ExtResource( 7 )
 
-[node name="TileMap2" type="TileMap" parent="."]
-z_index = -1
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 40, 40 )
-format = 1
-tile_data = PoolIntArray( 65545, 0, 0, 131081, 0, 0, 196617, 0, 0, 262153, 0, 0, 327689, 0, 0, 393225, 0, 0, 458761, 0, 0, 524297, 0, 0, 589833, 0, 0, 655369, 0, 0, 720905, 0, 0, 786441, 0, 0, 851977, 0, 0, 917513, 0, 0, 983049, 0, 0, 1048585, 0, 0, 1114121, 0, 0, 1179657, 0, 0, 1245193, 0, 0, 1310729, 0, 0, 1376265, 0, 0, 1441801, 0, 0, 1507337, 0, 0, 1572873, 0, 0, 1638409, 0, 0 )
+[node name="Label" type="Label" parent="GUI/HBox/MC2/VC/PowerPanel" index="0"]
+margin_left = 13.8438
+margin_top = 41.5305
+margin_right = 503.844
+margin_bottom = 150.53
+custom_fonts/font = ExtResource( 6 )
+text = "LEFT 
+TRY TIMES"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="NPCList" type="Node2D" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="GUI/HBox/MC2/VC/PowerPanel" index="1"]
+margin_top = 177.0
+margin_right = 512.0
+margin_bottom = 644.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ranger" parent="NPCList" instance=ExtResource( 5 )]
-position = Vector2( -8, -4 )
-curve = SubResource( 1 )
-
-[node name="ranger2" parent="NPCList" instance=ExtResource( 5 )]
-position = Vector2( -8, -4 )
-curve = SubResource( 1 )
-
-[node name="b1" parent="NPCList" instance=ExtResource( 5 )]
-position = Vector2( 1057, 48 )
-curve = null
-
-[node name="b2" parent="NPCList" instance=ExtResource( 5 )]
-position = Vector2( 1121, 99 )
-curve = null
-
-[node name="b3" parent="NPCList" instance=ExtResource( 5 )]
-position = Vector2( 1048, 121 )
-curve = null
+[node name="Times" type="Label" parent="GUI/HBox/MC2/VC/PowerPanel/CenterContainer"]
+margin_left = 197.0
+margin_top = 145.0
+margin_right = 314.0
+margin_bottom = 321.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.54, 0.2862, 0.2862, 1 )
+text = "9"
 
 [editable path="GUI"]
