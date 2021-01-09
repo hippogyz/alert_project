@@ -12,6 +12,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	$CenterContainer/Times.text = String(get_tree().root.get_child(0).rest_try_time)
+	
 #	pass
+
+func _on_try_times_updated(t):
+	$CenterContainer/Times.text = String(t)

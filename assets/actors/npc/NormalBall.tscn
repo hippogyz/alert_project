@@ -178,6 +178,7 @@ script = SubResource( 1 )
 impact_factor = 1.0
 threshod = 0.9
 life_time = 5.0
+is_playing_animation = true
 
 [node name="Anime" type="Sprite" parent="."]
 texture = ExtResource( 1 )

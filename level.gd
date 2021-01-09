@@ -2,6 +2,7 @@ extends Node2D
 
 signal game_over_signal()
 signal victory_signal()
+signal try_times_updated(t)
 
 export var game_over_waiting_time : float = 10.0
 var is_game_over : bool
@@ -18,6 +19,8 @@ func _ready() -> void:
 	is_victory = false
 	rest_try_time = max_try_time
 	player_m.connect("reduce_rest_time_signal",self, "reduce_rest_time")
+	self.connect("try_times_updated", $GUI/HBox/MC2/VC/PowerPanel, "_on_try_times_updated")
+	emit_signal("try_times_updated", rest_try_time)
 	
 
 func _physics_process(delta: float) -> void:
@@ -27,6 +30,7 @@ func _physics_process(delta: float) -> void:
 
 func reduce_rest_time() -> void:
 	rest_try_time -= 1
+	emit_signal("try_times_updated", rest_try_time)
 	if rest_try_time == 0: 
 		is_game_over = true
 		player_m.forbid_take_alert()

@@ -1,10 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://fonts/GUI-fonts.tres" type="DynamicFont" id=2]
+[ext_resource path="res://gui/PowerPanel.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 200
+outline_size = 5
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -106,6 +112,37 @@ margin_right = 516.0
 margin_bottom = 861.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="HBox/MC2/VC/PowerPanel"]
+margin_left = 13.8438
+margin_top = 41.5305
+margin_right = 503.844
+margin_bottom = 150.53
+custom_fonts/font = ExtResource( 2 )
+text = "LEFT 
+TRY TIMES"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="HBox/MC2/VC/PowerPanel"]
+margin_top = 177.0
+margin_right = 512.0
+margin_bottom = 644.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Times" type="Label" parent="HBox/MC2/VC/PowerPanel/CenterContainer"]
+margin_left = 197.0
+margin_top = 145.0
+margin_right = 314.0
+margin_bottom = 321.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.54, 0.2862, 0.2862, 1 )
+text = "9"
 
 [node name="Help" type="Panel" parent="HBox/MC2/VC"]
 margin_top = 865.0
