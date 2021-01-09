@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/actors/npc/npc.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/actors/player/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/tiles/background.tscn" type="PackedScene" id=4]
 [ext_resource path="res://level.gd" type="Script" id=5]
+[ext_resource path="res://stages/Stage2.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -53,6 +54,7 @@ _data = {
 
 [node name="Stage1" type="Node2D"]
 script = ExtResource( 5 )
+next_stage = ExtResource( 6 )
 
 [node name="player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 496.478, 340.424 )

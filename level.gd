@@ -5,6 +5,7 @@ signal victory_signal()
 signal try_times_updated(t)
 
 export var game_over_waiting_time : float = 10.0
+export var next_stage : PackedScene
 var is_game_over : bool
 var is_victory : bool
 
@@ -13,6 +14,7 @@ var rest_try_time : int
 
 onready var player_m = get_node("player")
 onready var npc_list = get_node("NPCList").get_children()
+const stage_clear = preload("res://gui/StageClear.tscn")
 
 func _ready() -> void:
 	is_game_over = false
@@ -62,6 +64,12 @@ func _judge_victory() -> void:
 		is_victory = true
 		print("%s: stage clear." % get_tree().get_current_scene().get_name())
 		emit_signal("victory_signal")
+		var popup = stage_clear.instance()
+		add_child(popup)
+		popup.connect("count_down_finish", self, "change_to_next_stage")
+		
+func change_to_next_stage():
+	get_tree().change_scene_to(next_stage)
 
 func _judge_game_over(delta:float) -> void:
 		if is_game_over && game_over_waiting_time > 0 && !is_victory:
