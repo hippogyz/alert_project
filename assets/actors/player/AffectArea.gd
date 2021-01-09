@@ -1,5 +1,7 @@
 extends Area2D
 
+signal awake_affect_area_signal()
+
 onready var area_sprite = get_node("AffectAreaSprite")
 onready var area_collision = get_node("AffectAreaShape")
 
@@ -19,11 +21,13 @@ func _physics_process(delta: float) -> void:
 			_stop_affect_area()
 
 func awake_affect_area() -> void:
-	is_awake = true
-	area_sprite.visible = true
-	area_collision.disabled = false
-	awake_time = awake_max_time
-	$AnimationPlayer.play("Alert")
+	if !is_awake:
+		is_awake = true
+		area_sprite.visible = true
+		area_collision.disabled = false
+		awake_time = awake_max_time
+		emit_signal("awake_affect_area_signal")
+		$AnimationPlayer.play("Alert")
 
 func _stop_affect_area() -> void:
 	is_awake = false
