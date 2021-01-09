@@ -93,6 +93,9 @@ radius = 208.154
 scale = Vector2( 1.5, 1.5 )
 loop = false
 script = ExtResource( 2 )
+impact_factor = 2.0
+threshod = 0.6
+life_time = 10.0
 
 [node name="Anime" type="Sprite" parent="."]
 texture = ExtResource( 1 )
