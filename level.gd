@@ -16,7 +16,7 @@ onready var player_m = get_node("player")
 onready var npc_list = get_node("NPCList").get_children()
 const stage_clear = preload("res://gui/StageClear.tscn")
 const game_over = preload("res://gui/GameOver.tscn")
-
+const all_clear = preload("res://gui/AllStageClear.tscn")
 func _ready() -> void:
 	is_game_over = false
 	is_victory = false
@@ -66,6 +66,10 @@ func _judge_victory() -> void:
 	if result:
 		is_victory = true
 		print("%s: stage clear." % get_tree().get_current_scene().get_name())
+		if get_tree().get_current_scene().get_name() == "StageEnd":
+			var popup = all_clear.instance()
+			add_child(popup)
+			return
 		emit_signal("victory_signal")
 		var popup = stage_clear.instance()
 		add_child(popup)

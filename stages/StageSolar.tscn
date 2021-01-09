@@ -51,7 +51,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 201.252, 28.4521 )
 }
 
-[node name="StageEmpty" type="Node2D"]
+[node name="StageEnd" type="Node2D"]
 script = ExtResource( 7 )
 game_over_waiting_time = 5.0
 max_try_time = 42
@@ -81,6 +81,9 @@ tile_set = ExtResource( 8 )
 position = Vector2( 551.377, 561.865 )
 curve = SubResource( 1 )
 
+[node name="Orbit" parent="NPCList/npc_template" index="1"]
+npc_path_nodepath = NodePath("../../../../StageEnd/NPCList/npc_template")
+
 [node name="npc_template2" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 306.078, 368.089 )
 curve = SubResource( 2 )
@@ -90,6 +93,9 @@ position = Vector2( 194.797, 30.6608 )
 rotation = -0.66039
 loop = true
 
+[node name="Orbit" parent="NPCList/npc_template2" index="1"]
+npc_path_nodepath = NodePath("../../../../StageEnd/NPCList/npc_template2")
+
 [node name="npc_template3" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 532.818, 445.222 )
 curve = SubResource( 3 )
@@ -98,12 +104,18 @@ curve = SubResource( 3 )
 rotation = 3.03842
 loop = true
 
+[node name="Orbit" parent="NPCList/npc_template3" index="1"]
+npc_path_nodepath = NodePath("../../../../StageEnd/NPCList/npc_template3")
+
 [node name="npc_template4" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 342.792, 125.829 )
 curve = SubResource( 4 )
 
 [node name="Ball" parent="NPCList/npc_template4" index="0"]
 loop = true
+
+[node name="Orbit" parent="NPCList/npc_template4" index="1"]
+npc_path_nodepath = NodePath("../../../../StageEnd/NPCList/npc_template4")
 
 [node name="npc_template5" parent="NPCList" instance=ExtResource( 3 )]
 position = Vector2( 975.621, 719.807 )
@@ -114,6 +126,9 @@ position = Vector2( -292.308, -181.845 )
 rotation = -0.831386
 loop = true
 
+[node name="Orbit" parent="NPCList/npc_template5" index="1"]
+npc_path_nodepath = NodePath("../../../../StageEnd/NPCList/npc_template5")
+
 [node name="npc_template6" parent="NPCList" instance=ExtResource( 1 )]
 position = Vector2( -365.698, -35.8746 )
 curve = SubResource( 6 )
@@ -123,12 +138,18 @@ position = Vector2( 108.288, -61.5099 )
 rotation = -0.421442
 loop = true
 
+[node name="Orbit" parent="NPCList/npc_template6" index="1"]
+npc_path_nodepath = NodePath("../../../../StageEnd/NPCList/npc_template6")
+
 [node name="npc_template7" parent="NPCList" instance=ExtResource( 1 )]
 position = Vector2( 1294.6, 44.2673 )
 curve = SubResource( 7 )
 
 [node name="Ball" parent="NPCList/npc_template7" index="0"]
 position = Vector2( 201.145, 28.1499 )
+
+[node name="Orbit" parent="NPCList/npc_template7" index="1"]
+npc_path_nodepath = NodePath("../../../../StageEnd/NPCList/npc_template7")
 
 [editable path="GUI"]
 
