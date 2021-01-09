@@ -1,24 +1,42 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://graphics/ball.png" type="Texture" id=1]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=5]
 script/source = "extends \"res://assets/actors/npc/PathFollow2D.gd\"
 
+export var affect_area_radius : float = 150.0
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
+onready var animation_player = get_node(\"AnimationPlayer\")
+onready var detector_area = get_node(\"DetectorArea\")
+onready var affect_area = get_node(\"AffectArea\")
 
+var is_alerted = false
+var meeting_npc = 0
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
+func _on_DetectorArea_area_entered(area: Area2D) -> void:
+	if area.owner.name == \"player\":
+		_alerted()
+	elif area.owner != self:
+		_meet_other_npc(area)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_DetectorArea_area_exited(area: Area2D) -> void:
+	if area.owner.name != \"player\" && area.owner != self:
+		_leave_other_npc(area)
+
+func _alerted() -> void:
+	if !is_alerted:
+		is_alerted = true
+		animation_player.play(\"TureAlerted\")
+
+func _meet_other_npc(area: Area2D) -> void:
+	++ meeting_npc
+
+func _leave_other_npc(area: Area2D) -> void:
+	-- meeting_npc
 "
 
 [sub_resource type="Animation" id=1]
@@ -79,8 +97,15 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="CircleShape2D" id=3]
+radius = 25.2982
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 144.222
+
 [node name="Ball" type="PathFollow2D"]
-script = SubResource( 3 )
+loop = false
+script = SubResource( 5 )
 
 [node name="Anime" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -90,3 +115,19 @@ frame = 7
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/TureAlerted = SubResource( 1 )
 anims/TureClam = SubResource( 2 )
+
+[node name="DetectorArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorArea"]
+shape = SubResource( 3 )
+
+[node name="AffectArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AffectArea"]
+shape = SubResource( 4 )
+[connection signal="area_entered" from="DetectorArea" to="." method="_on_DetectorArea_area_entered"]
+[connection signal="area_exited" from="DetectorArea" to="." method="_on_DetectorArea_area_exited"]

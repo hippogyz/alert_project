@@ -1,10 +1,7 @@
 extends Area2D
 
-export (NodePath) onready var area_sprite_path
-export (NodePath) onready var area_collision_path
-
-onready var area_sprite = get_node(area_sprite_path)
-onready var area_collision = get_node(area_collision_path)
+onready var area_sprite = get_node("AffectAreaSprite")
+onready var area_collision = get_node("AffectAreaShape")
 
 var is_awake
 export var awake_max_time : float = 1.0

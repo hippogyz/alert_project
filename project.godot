@@ -63,6 +63,13 @@ take_alert={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="world_map"
+2d_physics/layer_2="player"
+2d_physics/layer_3="npc_detector"
+2d_physics/layer_4="npc_affect"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

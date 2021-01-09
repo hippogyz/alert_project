@@ -5,8 +5,7 @@ signal take_alert_signal()
 export var move_speed : float = 500.0
 var _velocity : Vector2 = Vector2.ZERO
 
-export (NodePath) onready var affect_area_path
-onready var affect_area = get_node(affect_area_path)
+onready var affect_area = get_node("AffectArea")
 
 func _ready() -> void:
 	connect("take_alert_signal", affect_area, "awake_affect_area")
