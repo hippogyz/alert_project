@@ -49,8 +49,9 @@ position = Vector2( -8, -4 )
 curve = SubResource( 1 )
 
 [node name="Ball" parent="NPCList/ranger" index="0"]
-position = Vector2( 860, 54 )
-rotation = 2.8973
+position = Vector2( 1296.88, 214.531 )
+rotation = -1.73391
+offset = 2625.98
 loop = true
 velocity = 600.0
 
@@ -59,10 +60,11 @@ position = Vector2( -8, -4 )
 curve = SubResource( 1 )
 
 [node name="Ball" parent="NPCList/ranger2" index="0"]
-position = Vector2( 455.514, 433.875 )
-rotation = 1.78286
-offset = 652.559
+position = Vector2( 1306.88, 275.285 )
+rotation = -1.73397
+offset = 2564.28
 loop = true
+velocity = 400.0
 
 [node name="b1" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 1057, 48 )

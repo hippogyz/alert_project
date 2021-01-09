@@ -92,6 +92,9 @@ radius = 208.154
 [node name="Ball" type="PathFollow2D"]
 loop = false
 script = ExtResource( 2 )
+impact_factor = 1.0
+threshod = 0.3
+life_time = 5.0
 
 [node name="Anime" type="Sprite" parent="."]
 texture = ExtResource( 1 )

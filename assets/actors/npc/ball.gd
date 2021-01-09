@@ -61,6 +61,8 @@ func cal_next_state() -> void: # return the next frame's alerted state
 		next_state = is_alerted
 		return
 	else:
+		temp_count += 1
+		temp_factor += impact_factor if is_alerted else 0
 		temp_factor /= float(temp_count)
 #		if (is_alerted && temp_factor >= 1 - threshod) || (!is_alerted && temp_factor > threshod):
 		if (temp_factor > threshod):
