@@ -1,0 +1,205 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://graphics/ball.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://assets/actors/npc/PathFollow2D.gd\"
+
+#export var affect_area_radius : int = 150
+export var impact_factor : float = 0.5
+export var threshod : float = 0.4
+export var life_time : float = 3.0
+var is_playing_animation : bool = false
+var rest_life_time : float = 0
+
+onready var animation_player = get_node(\"AnimationPlayer\")
+onready var detector_area = get_node(\"DetectorArea\")
+onready var affect_area = get_node(\"AffectArea\")
+
+var is_alerted = false
+var next_state = false
+
+func _ready():
+	pass
+	#affect_area.get_node(\"CollisionShape2D\").radius = affect_area_radius
+
+
+func alerted() -> void:
+	if !is_alerted:
+		is_alerted = true
+		rest_life_time = life_time
+		animation_player.play(\"TureAlerted\")
+
+func fade() -> void:
+	if is_alerted:
+		is_alerted = false
+		animation_player.play(\"TureClam\")
+
+func cut_rest_life_time(delta:float) -> void:
+		if is_alerted:
+			rest_life_time -= delta
+			if rest_life_time <= 0:
+				print(\"%s: time fade\" % get_owner().get_name())
+				fade()
+
+func cal_next_state() -> void: # return the next frame's alerted state
+	if is_playing_animation:
+		next_state = is_alerted
+		return
+	
+	var overlap_area = detector_area.get_overlapping_areas()
+	var temp_factor : float = 0
+	var temp_count : int = 0
+	
+	for area in overlap_area:
+		if area.owner.name == \"player\":
+			rest_life_time = life_time
+			next_state = true
+			return
+		
+		if area.owner != self && !area.owner.is_playing_animation:
+			temp_factor += area.owner.impact_factor if area.owner.is_alerted else 0
+			temp_count += 1
+	
+	if temp_count == 0:
+		next_state = is_alerted
+		return
+	else:
+		temp_factor /= float(temp_count)
+		if (is_alerted && temp_factor >= 1 - threshod) || (!is_alerted && temp_factor > threshod):
+			next_state = true
+			return
+		else:
+			next_state = false
+			return
+
+func update_state() -> void :
+	if next_state:
+		alerted()
+	else:
+		fade()
+
+func judge_victory() -> bool:
+	if !is_playing_animation && is_alerted:
+		return true
+	else:
+		return false
+"
+
+[sub_resource type="Animation" id=2]
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Anime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.150245, 0.200734, 0.250245, 0.3, 0.349706 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 7, 6, 5, 4, 3, 2, 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Anime:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0202448, 0.0407344, 0.0609792, 0.0804681, 0.100223, 0.120958, 0.13555, 0.15555, 0.176997, 0.196018, 0.216507, 0.24, 0.257904, 0.282629, 0.30049, 0.319755, 0.336487, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:is_playing_animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Anime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.150245, 0.200979, 0.250245, 0.300979, 0.349951 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Anime:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0202448, 0.0407344, 0.0609792, 0.0804681, 0.100223, 0.120958, 0.13555, 0.15555, 0.176997, 0.196018, 0.216507, 0.24, 0.257904, 0.282629, 0.30049, 0.319755, 0.336487, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:is_playing_animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 25.2982
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 208.154
+
+[node name="Ball" type="PathFollow2D"]
+scale = Vector2( 0.6, 0.6 )
+loop = false
+script = SubResource( 1 )
+velocity = 400.0
+impact_factor = 1.0
+threshod = 0.9
+life_time = 5.0
+
+[node name="Anime" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 8
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/TureAlerted = SubResource( 2 )
+anims/TureClam = SubResource( 3 )
+
+[node name="DetectorArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorArea"]
+shape = SubResource( 4 )
+
+[node name="AffectArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AffectArea"]
+shape = SubResource( 5 )
