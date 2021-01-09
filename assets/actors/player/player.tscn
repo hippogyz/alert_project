@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/actors/npc/ball.png" type="Texture" id=1]
+[ext_resource path="res://assets/actors/player/player.gd" type="Script" id=2]
+[ext_resource path="res://assets/actors/player/AffectArea.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 70.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 300.167
+
+[node name="player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+affect_area_path = NodePath("AffectArea")
+
+[node name="PlayerSprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 4
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AffectArea" type="Area2D" parent="."]
+script = ExtResource( 3 )
+area_sprite_path = NodePath("AffectAreaSprite")
+area_collision_path = NodePath("AffectAreaShape")
+
+[node name="AffectAreaSprite" type="Sprite" parent="AffectArea"]
+position = Vector2( -1.90735e-06, 5.05447e-05 )
+scale = Vector2( 3.9548, 3.87641 )
+z_index = -1
+texture = ExtResource( 1 )
+hframes = 4
+frame = 2
+
+[node name="AffectAreaShape" type="CollisionShape2D" parent="AffectArea"]
+shape = SubResource( 2 )
+disabled = true
