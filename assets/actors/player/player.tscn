@@ -23,6 +23,7 @@ hframes = 8
 shape = SubResource( 1 )
 
 [node name="AffectArea" type="Area2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
 collision_layer = 2
 collision_mask = 4
 script = ExtResource( 3 )
