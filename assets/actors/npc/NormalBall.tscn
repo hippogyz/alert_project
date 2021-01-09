@@ -78,6 +78,12 @@ func update_state() -> void :
 		alerted()
 	else:
 		fade()
+
+func judge_victory() -> bool:
+	if !is_playing_animation && is_alerted:
+		return true
+	else:
+		return false
 "
 
 [sub_resource type="Animation" id=2]
