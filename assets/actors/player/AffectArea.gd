@@ -19,10 +19,11 @@ func _physics_process(delta: float) -> void:
 			_stop_affect_area()
 
 func awake_affect_area() -> void:
-	is_awake = true
-	area_sprite.visible = true
-	area_collision.disabled = false
-	awake_time = awake_max_time
+	if !is_awake:
+		is_awake = true
+		area_sprite.visible = true
+		area_collision.disabled = false
+		awake_time = awake_max_time
 
 func _stop_affect_area() -> void:
 	is_awake = false

@@ -2,13 +2,14 @@
 
 [ext_resource path="res://graphics/ball.png" type="Texture" id=1]
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=1]
 script/source = "extends \"res://assets/actors/npc/PathFollow2D.gd\"
 
-export var affect_area_radius : float = 150.0
+#export var affect_area_radius : int = 150
 export var impact_factor : float = 0.5
 export var threshod : float = 0.4
 export var life_time : float = 3.0
+export var is_playing_animation : bool = false
 var rest_life_time : float = 0
 
 onready var animation_player = get_node(\"AnimationPlayer\")
@@ -16,15 +17,11 @@ onready var detector_area = get_node(\"DetectorArea\")
 onready var affect_area = get_node(\"AffectArea\")
 
 var is_alerted = false
+var next_state = false
 
 func _ready():
-	pass # Replace with function body.
-
-func _physics_process(delta: float) -> void:
-	cut_rest_life_time(delta)
-	
-	var next_state = cal_next_state()
-	update_state(next_state)
+	pass
+	#affect_area.get_node(\"CollisionShape2D\").radius = affect_area_radius
 
 
 func alerted() -> void:
@@ -42,40 +39,48 @@ func cut_rest_life_time(delta:float) -> void:
 		if is_alerted:
 			rest_life_time -= delta
 			if rest_life_time <= 0:
+				print(\"time fade\")
 				fade()
 
-func cal_next_state() -> bool: # return the next frame's alerted state
+func cal_next_state() -> void: # return the next frame's alerted state
+	if is_playing_animation:
+		next_state = is_alerted
+		return
+	
 	var overlap_area = detector_area.get_overlapping_areas()
 	var temp_factor : float = 0
 	var temp_count : int = 0
 	
 	for area in overlap_area:
 		if area.owner.name == \"player\":
-			return true
+			rest_life_time = life_time
+			next_state = true
+			return
 		
-		if area.owner != self:
+		if area.owner != self && !area.owner.is_playing_animation:
 			temp_factor += area.owner.impact_factor if area.owner.is_alerted else 0
-			++ temp_count
+			temp_count += 1
 	
 	if temp_count == 0:
-		return is_alerted
+		next_state = is_alerted
+		return
 	else:
 		temp_factor /= float(temp_count)
 		if (is_alerted && temp_factor >= 1 - threshod) || (!is_alerted && temp_factor > threshod):
-			return true
+			next_state = true
+			return
 		else:
-			return false
+			next_state = false
+			return
 
-func update_state(next_state: bool) -> void :
-	if !is_alerted && next_state:
+func update_state() -> void :
+	if next_state:
 		alerted()
-	
-	if is_alerted && !next_state:
+	else:
 		fade()
 "
 
-[sub_resource type="Animation" id=1]
-resource_name = "TureAlerted"
+[sub_resource type="Animation" id=2]
 length = 0.4
 step = 0.05
 tracks/0/type = "value"
@@ -102,9 +107,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:is_playing_animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
-[sub_resource type="Animation" id=2]
-resource_name = "TureClam"
+[sub_resource type="Animation" id=3]
 length = 0.4
 step = 0.05
 tracks/0/type = "value"
@@ -131,16 +147,31 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 0, 0 ) ]
 }
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 25.2982
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:is_playing_animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 144.222
+radius = 25.2982
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 208.154
 
 [node name="Ball" type="PathFollow2D"]
 loop = false
-script = SubResource( 5 )
+script = SubResource( 1 )
+impact_factor = 1.0
+threshod = 0.9
+life_time = 5.0
 
 [node name="Anime" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -148,19 +179,19 @@ hframes = 8
 frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/TureAlerted = SubResource( 1 )
-anims/TureClam = SubResource( 2 )
+anims/TureAlerted = SubResource( 2 )
+anims/TureClam = SubResource( 3 )
 
 [node name="DetectorArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorArea"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="AffectArea" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AffectArea"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
