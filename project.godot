@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="Tell Evenryone"
 run/main_scene="res://stages/Stage1.tscn"
-config/icon="res://icon.png"
+config/icon="res://ball-logo.png"
 
 [autoload]
 

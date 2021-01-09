@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/tiles/block.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/actors/npc/npc_large.tscn" type="PackedScene" id=2]
@@ -8,33 +8,34 @@
 [ext_resource path="res://level.gd" type="Script" id=6]
 [ext_resource path="res://assets/actors/npc/npc.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/actors/npc/npc_small.tscn" type="PackedScene" id=8]
+[ext_resource path="res://stages/StageSolar.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 678.777, 233.284, 0, 0, 0, 0, 545.927, 274.238, 0, 0, 0, 0, 516.959, 376.123, 0, 0, 0, 0, 544.928, 473.013, 0, 0, 0, 0, 643.816, 524.954, 0, 0, 0, 0, 769.674, 496.986, 0, 0, 0, 0, 810.628, 386.111, 0, 0, 0, 0, 788.652, 278.233, 0, 0, 0, 0, 678.777, 233.284 )
 }
 
-[sub_resource type="Curve2D" id=4]
+[sub_resource type="Curve2D" id=2]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -721.384, 695.177, 0, 0, 0, 0, 159.721, 698.537 )
 }
 
-[sub_resource type="Curve2D" id=6]
+[sub_resource type="Curve2D" id=3]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 336.94, 98.3879, 0, 0, 0, 0, 336.311, 721.393 )
 }
 
-[sub_resource type="Curve2D" id=5]
+[sub_resource type="Curve2D" id=4]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -466.039, 354.998, 0, 0, 0, 0, -813.778, 354.998, 0, 0, 0, 0, -806.218, 822.009 )
 }
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=5]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 170.922, 534.242, 0, 0, 0, 0, 170.922, -219.191, 0, 0, 0, 0, 173.441, 377.172 )
 }
 
-[sub_resource type="Curve2D" id=3]
+[sub_resource type="Curve2D" id=6]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 259.956, 551.041, 0, 0, 0, 0, 254.076, 78.9906, 0, 0, 0, 0, 631.213, 76.4708 )
 }
@@ -42,6 +43,7 @@ _data = {
 [node name="StageKO" type="Node2D"]
 script = ExtResource( 6 )
 game_over_waiting_time = 5.0
+next_stage = ExtResource( 9 )
 
 [node name="player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 256, 568 )
@@ -49,6 +51,17 @@ position = Vector2( 256, 568 )
 [node name="GUI" parent="." instance=ExtResource( 5 )]
 margin_left = 0.629211
 margin_right = 0.629211
+
+[node name="StageName" parent="GUI/HBox/MC2/VC/StagePanel/MarginContainer/VBoxContainer/CenterContainer" index="0"]
+margin_left = 82.0
+margin_right = 362.0
+text = "STAGE IX"
+
+[node name="StageDesc" parent="GUI/HBox/MC2/VC/StagePanel/MarginContainer/VBoxContainer/CenterContainer2" index="0"]
+margin_left = 110.0
+margin_right = 335.0
+text = "A House Divided"
+uppercase = true
 
 [node name="TileMap" parent="." instance=ExtResource( 4 )]
 tile_set = ExtResource( 1 )
@@ -62,7 +75,7 @@ curve = SubResource( 1 )
 
 [node name="Ball" parent="NPCList/L1" index="0"]
 position = Vector2( 678.777, 233.284 )
-rotation = 2.84258
+rotation = 2.84257
 loop = true
 
 [node name="Orbit" parent="NPCList/L1" index="1"]
@@ -118,15 +131,15 @@ curve = null
 
 [node name="N13" parent="NPCList" instance=ExtResource( 7 )]
 position = Vector2( 973.899, 95.8918 )
-curve = SubResource( 4 )
+curve = SubResource( 2 )
 
 [node name="N15" parent="NPCList" instance=ExtResource( 7 )]
 position = Vector2( 973.899, 95.8918 )
-curve = SubResource( 6 )
+curve = SubResource( 3 )
 
 [node name="N14" parent="NPCList" instance=ExtResource( 7 )]
 position = Vector2( 973.899, 95.8918 )
-curve = SubResource( 5 )
+curve = SubResource( 4 )
 
 [node name="S1" parent="NPCList" instance=ExtResource( 8 )]
 visible = false
@@ -135,14 +148,14 @@ curve = null
 
 [node name="S2" parent="NPCList" instance=ExtResource( 8 )]
 position = Vector2( -93.1147, 373.579 )
-curve = SubResource( 2 )
+curve = SubResource( 5 )
 
 [node name="S3" parent="NPCList" instance=ExtResource( 8 )]
 position = Vector2( -93.1147, 373.579 )
-curve = SubResource( 2 )
+curve = SubResource( 5 )
 
 [node name="Ball" parent="NPCList/S3" index="0"]
-position = Vector2( 170.922, 140.194 )
+position = Vector2( 170.922, 140.195 )
 rotation = -1.5708
 offset = 395.567
 
@@ -151,11 +164,11 @@ npc_path_nodepath = NodePath("../../../../StageKO/NPCList/S1")
 
 [node name="S4" parent="NPCList" instance=ExtResource( 8 )]
 position = Vector2( -93.1147, 373.579 )
-curve = SubResource( 2 )
+curve = SubResource( 5 )
 
 [node name="Ball" parent="NPCList/S4" index="0"]
-position = Vector2( 171.189, -155.933 )
-rotation = 1.56658
+position = Vector2( 171.189, -155.934 )
+rotation = 1.56657
 offset = 817.83
 
 [node name="Orbit" parent="NPCList/S4" index="1"]
@@ -163,11 +176,11 @@ npc_path_nodepath = NodePath("../../../../StageKO/NPCList/S1")
 
 [node name="S5" parent="NPCList" instance=ExtResource( 8 )]
 position = Vector2( -93.1147, 373.579 )
-curve = SubResource( 3 )
+curve = SubResource( 6 )
 
 [node name="Ball" parent="NPCList/S5" index="0"]
-position = Vector2( 601.389, 76.67 )
-rotation = -0.0066816
+position = Vector2( 601.389, 76.6701 )
+rotation = -0.00668351
 offset = 817.83
 
 [node name="Orbit" parent="NPCList/S5" index="1"]
@@ -175,11 +188,11 @@ npc_path_nodepath = NodePath("../../../../StageKO/NPCList/S1")
 
 [node name="S6" parent="NPCList" instance=ExtResource( 8 )]
 position = Vector2( -93.1147, 373.579 )
-curve = SubResource( 3 )
+curve = SubResource( 6 )
 
 [node name="Ball" parent="NPCList/S6" index="0"]
-position = Vector2( 601.389, 76.67 )
-rotation = -0.0066816
+position = Vector2( 601.389, 76.6701 )
+rotation = -0.00668351
 offset = 817.83
 velocity = 400.0
 
@@ -188,16 +201,18 @@ npc_path_nodepath = NodePath("../../../../StageKO/NPCList/S1")
 
 [node name="S7" parent="NPCList" instance=ExtResource( 8 )]
 position = Vector2( -93.1147, 373.579 )
-curve = SubResource( 3 )
+curve = SubResource( 6 )
 
 [node name="Ball" parent="NPCList/S7" index="0"]
-position = Vector2( 601.389, 76.67 )
-rotation = -0.0066816
+position = Vector2( 601.389, 76.6701 )
+rotation = -0.00668351
 offset = 817.83
 velocity = 500.0
 
 [node name="Orbit" parent="NPCList/S7" index="1"]
 npc_path_nodepath = NodePath("../../../../StageKO/NPCList/S1")
+
+[editable path="GUI"]
 
 [editable path="TileMap"]
 

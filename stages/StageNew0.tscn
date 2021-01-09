@@ -20,32 +20,44 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 196, 31 )
 }
 
-[sub_resource type="Curve2D" id=5]
+[sub_resource type="Curve2D" id=3]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 196, 31 )
 }
 
-[sub_resource type="Curve2D" id=3]
+[sub_resource type="Curve2D" id=4]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 690, 30, 0, 0, 0, 0, 810, 30 )
 }
 
-[sub_resource type="Curve2D" id=4]
+[sub_resource type="Curve2D" id=5]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 180, 150, 0, 0, 0, 0, 180, 660 )
 }
 
-[node name="StageEmpty" type="Node2D"]
+[node name="Stage6" type="Node2D"]
 script = ExtResource( 6 )
+game_over_waiting_time = 5.0
 next_stage = ExtResource( 7 )
+max_try_time = 5
 
 [node name="player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 330, 180 )
 
 [node name="GUI" parent="." instance=ExtResource( 5 )]
+
+[node name="StageName" parent="GUI/HBox/MC2/VC/StagePanel/MarginContainer/VBoxContainer/CenterContainer" index="0"]
+margin_left = 82.0
+margin_right = 362.0
+text = "STAGE VI"
+
+[node name="StageDesc" parent="GUI/HBox/MC2/VC/StagePanel/MarginContainer/VBoxContainer/CenterContainer2" index="0"]
+margin_left = 125.0
+margin_right = 320.0
+text = "WHAT IS NEXT?"
 
 [node name="TileMap" parent="." instance=ExtResource( 4 )]
 tile_set = ExtResource( 1 )
@@ -61,29 +73,40 @@ curve = SubResource( 1 )
 position = Vector2( 270, 60 )
 rotation = 1.5708
 
+[node name="Orbit" parent="NPCList/npc_template4" index="1"]
+npc_path_nodepath = NodePath("../../../../Stage6/NPCList/npc_template4")
+
 [node name="npc_template3" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 1020, 150 )
 curve = SubResource( 2 )
 
 [node name="npc_template5" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 1020, 300 )
-curve = SubResource( 5 )
+curve = SubResource( 3 )
 
 [node name="npc_template2" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 210, 150 )
-curve = SubResource( 3 )
+curve = SubResource( 4 )
 
 [node name="Ball" parent="NPCList/npc_template2" index="0"]
 position = Vector2( 690, 30 )
 rotation = 0.0
 
+[node name="Orbit" parent="NPCList/npc_template2" index="1"]
+npc_path_nodepath = NodePath("../../../../Stage6/NPCList/npc_template2")
+
 [node name="npc_template" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 0, 30 )
-curve = SubResource( 4 )
+curve = SubResource( 5 )
 
 [node name="Ball" parent="NPCList/npc_template" index="0"]
 position = Vector2( 180, 150 )
 rotation = 1.5708
+
+[node name="Orbit" parent="NPCList/npc_template" index="1"]
+npc_path_nodepath = NodePath("../../../../Stage6/NPCList/npc_template")
+
+[editable path="GUI"]
 
 [editable path="NPCList/npc_template4"]
 

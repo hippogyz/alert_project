@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/tiles/block.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/actors/npc/npc.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/tiles/background.tscn" type="PackedScene" id=4]
 [ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://level.gd" type="Script" id=6]
+[ext_resource path="res://stages/StageStar.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 resource_local_to_scene = true
@@ -31,28 +32,40 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 196, 31 )
 }
 
-[sub_resource type="Curve2D" id=9]
+[sub_resource type="Curve2D" id=5]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 196, 31, 0, 0, 65, 5, 480, 30 )
+}
+
+[sub_resource type="Curve2D" id=6]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 196, 31 )
+}
+
+[sub_resource type="Curve2D" id=7]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 240, 30 )
+}
+
+[sub_resource type="Curve2D" id=8]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 900, 390 )
+}
+
+[sub_resource type="Curve2D" id=9]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 196, 31 )
 }
 
 [sub_resource type="Curve2D" id=10]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 196, 31 )
-}
-
-[sub_resource type="Curve2D" id=5]
-resource_local_to_scene = true
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 240, 30 )
-}
-
-[sub_resource type="Curve2D" id=6]
-resource_local_to_scene = true
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 900, 390 )
 }
 
 [sub_resource type="Curve2D" id=11]
@@ -64,25 +77,24 @@ _data = {
 [sub_resource type="Curve2D" id=12]
 resource_local_to_scene = true
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 196, 31 )
-}
-
-[sub_resource type="Curve2D" id=13]
-resource_local_to_scene = true
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 196, 31 )
-}
-
-[sub_resource type="Curve2D" id=8]
-resource_local_to_scene = true
-_data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 570, -750, 0, 0, 0, 0, 570, -330, 0, 0, 0, 0, 450, -330, 0, 0, 0, 0, 450, -180, 0, 0, 0, 0, 240, -180, 0, 0, 65, 5, 240, -120 )
 }
 
 [node name="StageEmpty" type="Node2D"]
 script = ExtResource( 6 )
+next_stage = ExtResource( 7 )
 
 [node name="GUI" parent="." instance=ExtResource( 5 )]
+
+[node name="StageName" parent="GUI/HBox/MC2/VC/StagePanel/MarginContainer/VBoxContainer/CenterContainer" index="0"]
+margin_left = 65.0
+margin_right = 380.0
+text = "STAGE VII"
+
+[node name="StageDesc" parent="GUI/HBox/MC2/VC/StagePanel/MarginContainer/VBoxContainer/CenterContainer2" index="0"]
+margin_left = 140.0
+margin_right = 305.0
+text = "ALERT SOULS"
 
 [node name="player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 150, 510 )
@@ -115,22 +127,21 @@ curve = SubResource( 4 )
 
 [node name="alert_two" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 180, 990 )
-curve = SubResource( 9 )
+curve = SubResource( 5 )
 
 [node name="Ball" parent="NPCList/alert_two" index="0"]
-position = Vector2( 480, 30 )
-rotation = -0.00438542
+rotation = -0.00352116
 
 [node name="Orbit" parent="NPCList/alert_two" index="1"]
 npc_path_nodepath = NodePath("../../alert_two")
 
 [node name="alert_three" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 570, 990 )
-curve = SubResource( 10 )
+curve = SubResource( 6 )
 
 [node name="guard_one" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 540, 270 )
-curve = SubResource( 5 )
+curve = SubResource( 7 )
 
 [node name="Ball" parent="NPCList/guard_one" index="0"]
 position = Vector2( 240, 30 )
@@ -139,7 +150,7 @@ position = Vector2( 240, 30 )
 npc_path_nodepath = NodePath("../../guard_one")
 
 [node name="guard_two" parent="NPCList" instance=ExtResource( 2 )]
-curve = SubResource( 6 )
+curve = SubResource( 8 )
 
 [node name="Ball" parent="NPCList/guard_two" index="0"]
 position = Vector2( 900, 390 )
@@ -149,25 +160,28 @@ npc_path_nodepath = NodePath("../../guard_two")
 
 [node name="guard_four" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 840, 990 )
-curve = SubResource( 11 )
+curve = SubResource( 9 )
 
 [node name="guard_five" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 720, 870 )
-curve = SubResource( 12 )
+curve = SubResource( 10 )
 
 [node name="guard_six" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 870, 930 )
-curve = SubResource( 13 )
+curve = SubResource( 11 )
 
 [node name="third" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 720, 840 )
-curve = SubResource( 8 )
+curve = SubResource( 12 )
 
 [node name="Ball" parent="NPCList/third" index="0"]
-position = Vector2( 240, -120 )
+position = Vector2( 570, -750 )
+rotation = 1.5708
 
 [node name="Orbit" parent="NPCList/third" index="1"]
 npc_path_nodepath = NodePath("../../third")
+
+[editable path="GUI"]
 
 [editable path="NPCList/alert_two"]
 
