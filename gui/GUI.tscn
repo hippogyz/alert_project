@@ -127,7 +127,7 @@ margin_right = 492.0
 margin_bottom = 152.0
 custom_fonts/font = SubResource( 2 )
 text = "MOVE: |W|A|S|D|
-ALERT:|SPACE|"
+TELL: |SPACE|"
 align = 3
 valign = 1
 __meta__ = {
