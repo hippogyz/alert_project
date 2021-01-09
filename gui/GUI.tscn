@@ -8,12 +8,12 @@
 size = 25
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 200
 outline_size = 5
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 50
 font_data = ExtResource( 1 )
 
@@ -140,7 +140,7 @@ margin_left = 197.0
 margin_top = 145.0
 margin_right = 314.0
 margin_bottom = 321.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.54, 0.2862, 0.2862, 1 )
 text = "9"
 
@@ -159,12 +159,13 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="HBox/MC2/VC/Help/CenterContainer"]
 margin_left = 57.0
-margin_top = 61.0
+margin_top = 38.0
 margin_right = 492.0
-margin_bottom = 152.0
-custom_fonts/font = SubResource( 2 )
+margin_bottom = 176.0
+custom_fonts/font = SubResource( 3 )
 text = "MOVE: |W|A|S|D|
-TELL: |SPACE|"
+TELL: |SPACE|
+SIGHT:|F|"
 align = 3
 valign = 1
 __meta__ = {
