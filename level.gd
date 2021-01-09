@@ -56,11 +56,12 @@ func _judge_victory() -> void:
 	
 	if result:
 		is_victory = true
+		print("%s: stage clear." % get_tree().get_current_scene().get_name())
 		emit_signal("victory_signal")
 
 func _judge_game_over(delta:float) -> void:
 		if is_game_over && game_over_waiting_time > 0 && !is_victory:
 			game_over_waiting_time -= delta
 			if game_over_waiting_time <= 0:
-				print("game over")
+				print("%s: game over" % get_tree().get_current_scene().get_name())
 				emit_signal("game_over_signal")

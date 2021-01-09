@@ -20,6 +20,8 @@ func change_exhibit_mode(mode) -> void:
 	update()
 
 func _draw() -> void:
+	if curve == null:
+		return
 	match exhibit_mode:
 		Exhibit.DEFAULT:
 			draw_polyline(curve.get_baked_points(), default_color, line_width, true)

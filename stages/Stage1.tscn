@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/actors/npc/npc.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/actors/player/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/tiles/background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://level.gd" type="Script" id=5]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -51,6 +52,7 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 496.478, 340.424 )
@@ -63,57 +65,52 @@ margin_bottom = 2.74272
 
 [node name="Background" parent="." instance=ExtResource( 4 )]
 
-[node name="T" parent="." instance=ExtResource( 2 )]
+[node name="NPCList" type="Node2D" parent="."]
+
+[node name="T" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 148.165, -200.547 )
 curve = SubResource( 1 )
 
-[node name="Ball" parent="T" index="0"]
-position = Vector2( 196.419, 448.395 )
-rotation = -0.0499498
-loop = true
-
-[node name="E" parent="." instance=ExtResource( 2 )]
+[node name="E" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 148.165, -200.547 )
 curve = SubResource( 2 )
 
-[node name="L" parent="." instance=ExtResource( 2 )]
+[node name="L" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 75.5792, -202.043 )
 curve = SubResource( 3 )
 
-[node name="L2" parent="." instance=ExtResource( 2 )]
+[node name="L2" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 249.187, -199.05 )
 curve = SubResource( 4 )
 
-[node name="E2" parent="." instance=ExtResource( 2 )]
+[node name="E2" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( -341.228, 146.668 )
 curve = SubResource( 2 )
 
-[node name="V" parent="." instance=ExtResource( 2 )]
+[node name="V" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( -394.358, 147.417 )
 curve = SubResource( 5 )
 
-[node name="R" parent="." instance=ExtResource( 2 )]
+[node name="R" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( -71.0891, 147.417 )
 curve = SubResource( 6 )
 
-[node name="V3" parent="." instance=ExtResource( 2 )]
+[node name="V3" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( -71.0891, 147.417 )
 curve = SubResource( 7 )
 
-[node name="E3" parent="." instance=ExtResource( 2 )]
+[node name="E3" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( -12.7212, 146.668 )
 curve = SubResource( 2 )
 
-[node name="O" parent="." instance=ExtResource( 2 )]
+[node name="O" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 109.253, 139.185 )
 curve = SubResource( 8 )
 
-[node name="N" parent="." instance=ExtResource( 2 )]
+[node name="N" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 109.253, 139.185 )
 curve = SubResource( 9 )
 
-[node name="E4" parent="." instance=ExtResource( 2 )]
+[node name="E4" parent="NPCList" instance=ExtResource( 2 )]
 position = Vector2( 768.512, 130.206 )
 curve = SubResource( 2 )
-
-[editable path="T"]
