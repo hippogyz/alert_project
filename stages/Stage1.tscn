@@ -21,9 +21,7 @@ position = Vector2( 496.478, 340.424 )
 
 [node name="GUI" parent="." instance=ExtResource( 1 )]
 margin_left = 0.629211
-margin_top = 9.43875
 margin_right = 0.629211
-margin_bottom = 9.43875
 
 [node name="Ball1" parent="." instance=ExtResource( 2 )]
 position = Vector2( -14.4172, 98.0703 )
@@ -31,8 +29,7 @@ curve = SubResource( 1 )
 
 [node name="Ball" parent="Ball1" index="0"]
 position = Vector2( 915.531, 134.819 )
-rotation = -0.844142
-velocity = 100.0
+rotation = -0.844168
 
 [node name="Ball2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -640.902, 634.676 )
@@ -40,8 +37,7 @@ curve = SubResource( 2 )
 
 [node name="Ball" parent="Ball2" index="0"]
 position = Vector2( 915.531, 134.819 )
-rotation = -0.844142
-velocity = 50.0
+rotation = -2.18259
 
 [editable path="Ball1"]
 
