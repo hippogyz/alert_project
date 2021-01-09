@@ -9,7 +9,7 @@ script/source = "extends \"res://assets/actors/npc/PathFollow2D.gd\"
 export var impact_factor : float = 0.5
 export var threshod : float = 0.4
 export var life_time : float = 3.0
-export var is_playing_animation : bool = false
+var is_playing_animation : bool = false
 var rest_life_time : float = 0
 
 onready var animation_player = get_node(\"AnimationPlayer\")
@@ -178,7 +178,6 @@ script = SubResource( 1 )
 impact_factor = 1.0
 threshod = 0.9
 life_time = 5.0
-is_playing_animation = true
 
 [node name="Anime" type="Sprite" parent="."]
 texture = ExtResource( 1 )
