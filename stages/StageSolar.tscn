@@ -1,0 +1,132 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/actors/npc/npc_large.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/actors/npc/npc.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/actors/npc/npc_small.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/tiles/background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/actors/player/player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://level.gd" type="Script" id=7]
+[ext_resource path="res://assets/tiles/block.tres" type="TileSet" id=8]
+
+[sub_resource type="Curve2D" id=2]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 196, 31 )
+}
+
+[sub_resource type="Curve2D" id=1]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 194.797, 30.6608, -65, -5, 65, 5, 421.62, -91.7144, -32.8591, -43.5198, 32.8591, 43.5198, 676.124, 9.07938, 1.66071, -43.5992, -1.66071, 43.5992, 750.459, 264.843, 46.2599, -28.1984, -46.2599, 28.1984, 616.908, 463.911, 66.7758, 0, -66.7758, 0, 425.4, 518.088, 36.5377, 40.3175, -36.5377, -40.3175, 177.195, 448.792, -11.3393, 80.6349, 11.3393, -80.6349, 114.199, 210.667, 0, 0, 0, 0, 194.834, 30.498 )
+}
+
+[sub_resource type="Curve2D" id=3]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 196, 31, 36.0407, -28.0316, -36.0407, 28.0316, 94.9899, 64.369, -1.33484, -48.0542, 1.33484, 48.0542, 30.9177, 187.174, -40.0452, -8.00904, 40.0452, 8.00904, 141.709, 323.328, -38.7104, 24.0271, 38.7104, -24.0271, 315.239, 296.631, 28.0316, 77.4207, -28.0316, -77.4207, 367.297, 127.106, 0, 0, 0, 0, 195.903, 30.8738 )
+}
+
+[sub_resource type="Curve2D" id=4]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 196, 31, -65, -5, 65, 5, 424, 30, -86.267, -110.309, 86.267, 110.309, 677.104, 154.756, 58.2548, -114.439, -58.2548, 114.439, 742.034, 648.036, 158.137, -17.1421, -158.137, 17.1421, 353.602, 861.852, 69.2965, 107.48, -69.2965, -107.48, -145.301, 646.254, -155.564, 134.35, 155.564, -134.35, -97.1927, 131.315, 0, 0, 0, 0, 195.858, 31.1309 )
+}
+
+[sub_resource type="Curve2D" id=5]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( -96, 106, 96, -106, -292.308, -181.845, -70, -18, 70, 18, -96.3079, -227.845, -59, -45, 59, 45, 289.692, 46.1547, 17, -17, -17, 17, 1029.69, 554.155, 168, 54, -168, -54, 245.692, 286.155, 36, 116, -36, -116, -326.308, 42.1547, -85.3303, 90.6561, 85.3303, -90.6561, -294.308, -181.845 )
+}
+
+[sub_resource type="Curve2D" id=6]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 108.288, -61.5099, -204.185, 3.9797, 204.185, -3.9797, 790.745, -281.513, -216.553, -157.736, 216.553, 157.736, 1607.9, 100.125, 30.9594, -295.901, -30.9594, 295.901, 1908.72, 796.051, 269.492, -38.9188, -269.492, 38.9188, 983.808, 1411.16, 179.594, 121.226, -179.594, -121.226, 292.371, 1263, 26.9391, 197.553, -26.9391, -197.553, 10.8273, 819.852, 0, 0, 0, 0, 103.798, -61.5099 )
+}
+
+[sub_resource type="Curve2D" id=7]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 201.252, 28.4521 )
+}
+
+[node name="StageEmpty" type="Node2D"]
+script = ExtResource( 7 )
+max_try_time = 99
+
+[node name="player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 256, 568 )
+
+[node name="GUI" parent="." instance=ExtResource( 6 )]
+margin_left = 0.629211
+margin_right = 0.629211
+
+[node name="TileMap" parent="." instance=ExtResource( 4 )]
+tile_set = ExtResource( 8 )
+
+[node name="NPCList" type="Node2D" parent="."]
+
+[node name="npc_template" parent="NPCList" instance=ExtResource( 1 )]
+position = Vector2( 551.377, 561.865 )
+curve = SubResource( 2 )
+
+[node name="npc_template2" parent="NPCList" instance=ExtResource( 2 )]
+position = Vector2( 306.078, 368.089 )
+curve = SubResource( 1 )
+
+[node name="Ball" parent="NPCList/npc_template2" index="0"]
+position = Vector2( 194.797, 30.6608 )
+rotation = -0.660393
+loop = true
+
+[node name="npc_template3" parent="NPCList" instance=ExtResource( 2 )]
+position = Vector2( 532.818, 445.222 )
+curve = SubResource( 3 )
+
+[node name="Ball" parent="NPCList/npc_template3" index="0"]
+rotation = 3.03842
+loop = true
+
+[node name="npc_template4" parent="NPCList" instance=ExtResource( 2 )]
+position = Vector2( 342.792, 125.829 )
+curve = SubResource( 4 )
+
+[node name="Ball" parent="NPCList/npc_template4" index="0"]
+loop = true
+
+[node name="npc_template5" parent="NPCList" instance=ExtResource( 3 )]
+position = Vector2( 975.621, 719.807 )
+curve = SubResource( 5 )
+
+[node name="Ball" parent="NPCList/npc_template5" index="0"]
+position = Vector2( 8.00006, 219 )
+loop = true
+
+[node name="npc_template6" parent="NPCList" instance=ExtResource( 1 )]
+position = Vector2( -365.698, -35.8746 )
+curve = SubResource( 6 )
+
+[node name="Ball" parent="NPCList/npc_template6" index="0"]
+loop = true
+
+[node name="npc_template7" parent="NPCList" instance=ExtResource( 1 )]
+position = Vector2( 1294.6, 44.2673 )
+curve = SubResource( 7 )
+
+[node name="Ball" parent="NPCList/npc_template7" index="0"]
+position = Vector2( 201.145, 28.1499 )
+
+[editable path="NPCList/npc_template"]
+
+[editable path="NPCList/npc_template2"]
+
+[editable path="NPCList/npc_template3"]
+
+[editable path="NPCList/npc_template4"]
+
+[editable path="NPCList/npc_template5"]
+
+[editable path="NPCList/npc_template6"]
+
+[editable path="NPCList/npc_template7"]
