@@ -23,6 +23,7 @@ func awake_affect_area() -> void:
 	area_sprite.visible = true
 	area_collision.disabled = false
 	awake_time = awake_max_time
+	$AnimationPlayer.play("Alert")
 
 func _stop_affect_area() -> void:
 	is_awake = false
