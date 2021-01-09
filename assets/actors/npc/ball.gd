@@ -6,6 +6,7 @@ export var threshod : float = 0.4
 export var life_time : float = 3.0
 var is_playing_animation : bool = false
 var rest_life_time : float = 0
+var exhibit_mode
 
 onready var animation_player = get_node("AnimationPlayer")
 onready var detector_area = get_node("DetectorArea")
@@ -15,7 +16,7 @@ var is_alerted = false
 var next_state = false
 
 func _ready():
-	pass
+	exhibit_mode = 0
 	#affect_area.get_node("CollisionShape2D").radius = affect_area_radius
 
 
@@ -79,3 +80,6 @@ func judge_victory() -> bool:
 		return true
 	else:
 		return false
+
+func change_exhibit_mode(mode) -> void:
+	exhibit_mode = mode
