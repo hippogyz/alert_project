@@ -23,6 +23,7 @@ _global_script_class_icons={
 config/name="Tell Evenryone"
 run/main_scene="res://stages/Stage1.tscn"
 config/icon="res://ball-logo.png"
+config/windows_native_icon="res://askk2-2pyp4-005.ico"
 
 [autoload]
 
